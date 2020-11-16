@@ -1,3 +1,4 @@
+import util from 'util';
 import { getTokenExpiresAtDate } from './utils.js';
 import { parseResponse } from './response.js';
 
@@ -143,7 +144,7 @@ export default class DropboxAuth {
       .substr(0, 128);
     this.codeVerifier = codeVerifier;
 
-    const encoder = new TextEncoder();
+    const encoder = new util.TextEncoder();
     const codeData = encoder.encode(codeVerifier);
     let codeChallenge = crypto.createHash('sha256').update(codeData).digest();
     codeChallenge = codeChallenge.toString('base64')
